@@ -1,0 +1,182 @@
+/* no font @import here, doing link rel in the html instead, with preconnect, preload and async */
+
+/* custom properties */
+:root {
+  /* colours */
+
+  /* 
+  consider doing raw values here and passing them into hsl in the element rules
+  e.g. --primary-dark: 158, 36%, 37%
+  then in the rule
+  color: hsl(var(--primary-dark)
+  this way alpha channels can be adjusted independently
+  */
+
+  --primary-dark: hsl(158, 36%, 37%);
+  /* adding darker for the button active state */
+  --primary-darker: hsl(158, 36%, 17%);
+  --primary-light: hsl(30, 38%, 92%);
+
+  --neutral-darker: hsl(212, 21%, 14%);
+  --neutral-dark: hsl(228, 12%, 48%);
+  --neutral-white: hsl(0, 0%, 100%);
+
+  /* sizes */
+  --card-width-desktop: 47rem;
+  --card-width-mobile: 27rem;
+}
+
+/* define baseline font-size and family on html 
+so that the specified 14px becomes the root size for rems */
+html {
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  color: var(--neutral-dark);
+  background-color: var(--primary-light);
+
+  /* might as well put padding on the body, there's only one element in it */
+  padding: 2rem 1rem;
+}
+
+/* just for the document heading - not part of the challenge! */
+h1 {
+  font-size: 1.2rem;
+  line-height: 2rem;
+  text-transform: uppercase;
+  padding-bottom: 0.1rem;
+  border-bottom: 2px solid var(--neutral-dark);
+  margin-bottom: 3rem;
+}
+
+.card {
+  /* don't really need flex here but will need it for the desktop queries */
+  /* bc it'll need to be flex-direction: row */
+  display: flex;
+  flex-direction: column;
+  /* doesn't really need max-width, it's just to stop the card getting too wide
+  between the mobile target size in the style guide (375px) and the desktop size (992px)
+  in practice there would be another breakpoint for tablets */
+  max-width: var(--card-width-mobile);
+  margin: 0 auto;
+  background-color: var(--neutral-white);
+  border-radius: 1rem;
+}
+
+@media (min-width: 992px) {
+  .card {
+    flex-direction: row;
+    max-width: var(--card-width-desktop);
+  }
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 2rem;
+  /* 'justify-content: center' will keep the content in the horizontal centre 
+  of the div when direction is column (mobile) and the vertical centre
+  when direction is row (desktop) */
+  justify-content: center;
+}
+
+@media (min-width: 992px) {
+  .card-content {
+    max-width: calc(var(--card-width-desktop) / 2.3);
+    /* bit more gap for the desktop */
+    gap: 1.5rem;
+  }
+}
+
+/* .card-picture-container was just in case, no style rule for it currently */
+
+/* styling goes on the img, not the picture */
+.card-img {
+  border-radius: 1rem 1rem 0 0;
+}
+
+@media (min-width: 992px) {
+  .card-img {
+    border-radius: 1rem 0 0 1rem;
+    max-width: calc(var(--card-width-desktop) / 2);
+  }
+}
+.card-category {
+  text-transform: uppercase;
+  letter-spacing: 0.4rem;
+  font-size: 0.85rem;
+}
+
+.card-heading {
+  font-family: 'Fraunces', serif;
+  font-size: 2.33rem;
+  line-height: 2.5rem;
+  color: var(--neutral-darker);
+}
+
+.card-description {
+  line-height: 1.8rem;
+}
+
+.card-price {
+  display: flex;
+  column-gap: 1.5rem;
+  /* row-gap needs to be smaller in case of wrapping */
+  row-gap: 0;
+  align-items: center;
+  /* the two prices will need to wrap at very low widths (<250px) */
+  flex-wrap: wrap;
+}
+
+.card-price-promo {
+  font-family: 'Fraunces', serif;
+  font-size: 2.2rem;
+  color: var(--primary-dark);
+}
+
+.card-price-original {
+  text-decoration: line-through;
+}
+
+.card-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  min-width: 100%;
+  background-color: var(--primary-dark);
+  padding: 1rem;
+  border: 0;
+  border-radius: 0.75rem;
+  color: var(--neutral-white);
+  font-weight: bold; /* same as 500 */
+  cursor: pointer;
+}
+
+.card-btn:hover,
+.card-btn:focus {
+  background-color: var(--primary-darker);
+  outline: 0;
+}
+
+.card-btn:focus {
+  outline: 0;
+  box-shadow: 0.1rem 0.1rem 2rem var(--neutral-dark);
+}
+
+.icon {
+  /* no display property, it'll be a flex item which are always block level */
+  min-width: 1rem;
+  min-height: 1rem;
+  background: center no-repeat;
+  color: var(--neutral-white);
+}
+
+.icon.icon-cart {
+  background-image: url(./images/icon-cart.svg);
+}

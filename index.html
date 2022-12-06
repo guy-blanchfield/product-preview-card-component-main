@@ -1,36 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Product preview card component</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+    <!-- fonts preconnect, preload and stylesheet -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="fonts.googleapis.com" crossorigin />
 
-  Preview
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap"
+    />
 
-  Gabrielle Essence Eau De Parfum
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&display=swap"
+    />
 
-  A floral, solar and voluptuous interpretation composed by Olivier Polge, 
-  Perfumer-Creator for the House of CHANEL.
+    <!-- media atrribute set to print causes the browser to load the stylesheet asynchronously 
+    (because print isn't the current media environment) then switches media to all on load -->
 
-  $149.99
-  $169.99
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
 
-  Add to Cart
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+
+    <!-- this technique might need a noscript fallback though -->
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap"
+    /></noscript>
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&display=swap"
+    /></noscript>
+
+    <link rel="stylesheet" href="jwc_reset.css" />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Frontend Mentor | Product preview card component</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+        /* add a bit of margin */
+        margin: 3rem 0;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+        /* no-one likes an underline :) */
+        text-decoration: none;
+      }
+
+      .attribution a:hover,
+      .attribution a:focus {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- just stick an h1 here for validity -->
+    <h1>Product preview card component</h1>
+
+    <!-- article is probably the best semantic fit for a product card -->
+    <article class="card">
+      <!-- put the picture in a container div just for more options -->
+      <div class="card-picture-container">
+        <picture class="card-picture">
+          <source
+            srcset="./images/image-product-desktop.jpg"
+            media="(min-width: 992px)"
+          />
+          <img
+            src="./images/image-product-mobile.jpg"
+            alt="Gabrielle Chanel Perfume Bottle"
+            class="card-img"
+          />
+        </picture>
+      </div>
+      <div class="card-content">
+        <div class="card-category">Perfume</div>
+        <h2 class="card-heading">Gabrielle Essence Eau De Parfum</h2>
+        <section class="card-description">
+          A floral, solar and voluptuous interpretation composed by Olivier
+          Polge, Perfumer-Creator for the House of CHANEL.
+        </section>
+
+        <section class="card-price">
+          <div class="card-price-promo">$149.99</div>
+          <div class="card-price-original">$169.99</div>
+        </section>
+
+        <button class="card-btn card-btn-addtocart">
+          <i class="icon icon-cart" aria-hidden="true"></i>
+          <span class="card-button-text">Add to Cart</span>
+        </button>
+      </div>
+    </article>
+
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by
+      <a href="https://github.com/guy-blanchfield">Guy Blanchfield</a>.
+    </div>
+  </body>
 </html>
